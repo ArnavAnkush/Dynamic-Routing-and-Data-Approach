@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MyStore } from "../context/MyContext";
+import { useNavigate } from "react-router";
 
 const ProductsCards = ({ product, isInCart }) => {
   let { setCartItems, incrementQuantity, decrementQuantity } =
@@ -10,10 +11,17 @@ const ProductsCards = ({ product, isInCart }) => {
     alert("Product added to cart");
   };
 
+  let navigate = useNavigate();
+
   return (
     <div className="bg-[#111827] border-2 cursor-pointer border-gray-800 rounded-2xl overflow-hidden hover:border-indigo-500 transition duration-300 group">
       {/* Product Image */}
-      <div className="bg-white h-64 flex items-center justify-center p-6">
+      <div
+        onClick={() => {
+          navigate(`/detail/${product.id}`);
+        }}
+        className="bg-white h-64 flex items-center justify-center p-6"
+      >
         <img
           src={product.image}
           alt={product.title}
