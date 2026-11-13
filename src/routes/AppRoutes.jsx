@@ -4,13 +4,21 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProductDetail";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const AppRoutes = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoutes>
+              <About />
+            </ProtectedRoutes>
+          }
+        ></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/detail/:id" element={<ProductDetail />}></Route>
       </Routes>
